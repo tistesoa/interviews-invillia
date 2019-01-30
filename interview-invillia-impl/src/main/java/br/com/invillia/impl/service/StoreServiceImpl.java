@@ -12,6 +12,7 @@ import java.util.List;
 
 
 @Service("store")
+@Transactional(rollbackFor = StoreNotFoundException.class)
 public class StoreServiceImpl implements StoreService {
 
     @Autowired
@@ -31,9 +32,7 @@ public class StoreServiceImpl implements StoreService {
                     value.setAddress(store.getAddress());
                     return repository.save(store);
                 })
-                .orElseGet(() -> {
-                   return create(store);
-                });
+                .orElseThrow(() -> new StoreNotFoundException(store.getId()));
     }
 
     @Override

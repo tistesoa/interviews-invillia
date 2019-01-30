@@ -26,7 +26,15 @@ public class Store {
         setAddress(address);
     }
 
-    @OneToMany(mappedBy = "store")
+    @OneToMany(mappedBy = "store",fetch = FetchType.LAZY)
     private List<Order> orders;
+
+
+    @Tolerate
+    public Store(Long id) {
+        setId(id);
+    }
+
+
 
 }

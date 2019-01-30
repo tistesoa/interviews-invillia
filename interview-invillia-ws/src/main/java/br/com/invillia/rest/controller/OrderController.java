@@ -1,10 +1,12 @@
 package br.com.invillia.rest.controller;
 
 
+import br.com.invillia.api.model.order.OrderDTO;
 import br.com.invillia.api.model.order.entity.Order;
 import br.com.invillia.api.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -18,7 +20,7 @@ public class OrderController {
     OrderService order;
 
     @PostMapping("/new")
-    public Order create(@Valid @RequestBody Order newOrder) { //valid order with items
+    public Order create(@Validated @RequestBody OrderDTO newOrder) { //valid order with items
         return order.create(newOrder);
     }
 

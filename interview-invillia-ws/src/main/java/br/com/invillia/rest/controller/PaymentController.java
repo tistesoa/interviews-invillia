@@ -1,8 +1,10 @@
 package br.com.invillia.rest.controller;
 
+import br.com.invillia.api.model.payment.PaymentDTO;
 import br.com.invillia.api.model.payment.entity.Payment;
 import br.com.invillia.api.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +18,7 @@ public class PaymentController {
     PaymentService payment;
 
     @PostMapping("/new")
-    public Payment createPayment(@RequestBody Payment newPayment) { //valid order with items
+    public Payment createPayment(@Validated @RequestBody PaymentDTO newPayment) { //valid order with items
         return payment.create(newPayment);
     }
 }

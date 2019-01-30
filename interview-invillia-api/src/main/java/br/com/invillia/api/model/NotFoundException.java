@@ -1,8 +1,11 @@
 package br.com.invillia.api.model;
 
-public abstract class NotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
+public abstract class NotFoundException extends ResponseStatusException {
 
 	public NotFoundException(String msg) {
-		super(msg);
+		super(HttpStatus.NOT_FOUND,msg);
 	}
 }
