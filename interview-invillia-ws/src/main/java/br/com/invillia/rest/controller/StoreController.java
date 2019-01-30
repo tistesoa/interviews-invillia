@@ -1,13 +1,12 @@
 package br.com.invillia.rest.controller;
 
-import br.com.invillia.api.store.entity.Store;
-import br.com.invillia.api.store.service.StoreService;
-import br.com.invillia.impl.service.StoreServiceImpl;
+import br.com.invillia.api.model.store.entity.Store;
+import br.com.invillia.api.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -20,28 +19,37 @@ public class StoreController {
     StoreService store;
 
     @PostMapping("/new")
-    public Long createStore(@RequestBody Store newStore) {//Welcome page, non-rest
-        return store.createStore(newStore);
+    public Store createStore(@Valid @RequestBody Store newStore) {
+        return store.create(newStore);
     }
 
     @PutMapping("/update")
-    public Long updateStore(@RequestBody Store newStore) {//Welcome page, non-rest
-        return store.updateStore(newStore);
+    public Store updateStore(@Valid @RequestBody Store newStore) {
+        return store.update(newStore);
     }
 
     @GetMapping("/find/name/{name}")
-    public List<Store> listAll(@PathVariable String name) {//REST Endpoint.
+    public List<Store> listByName(@NonNull @PathVariable String name) {
         return store.findByName(name);
     }
 
+    @GetMapping("/find/address/{address}")
+    public List<Store> listByAddress(@NonNull @PathVariable String address) {
+        return store.findByAddress(address);
+    }
+
     @GetMapping("/get/{id}")
-    public Store listAll(@PathVariable Long id) {//REST Endpoint.
+    public Store findById(@NonNull @PathVariable Long id) {
         return store.findById(id);
     }
 
-
     @GetMapping("/list/all")
-    public List<Store> listAll() {//REST Endpoint.
+    public List<Store> listAll() {
         return store.listAll();
     }
+
+/*    @DeleteMapping("/delete/{id}")
+    void deleteEmployee(@PathVariable Long id) {
+        repository.deleteById(id);
+    }*/
 }

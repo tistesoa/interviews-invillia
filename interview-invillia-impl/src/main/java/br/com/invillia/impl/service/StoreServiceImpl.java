@@ -1,11 +1,12 @@
 package br.com.invillia.impl.service;
 
-import br.com.invillia.api.store.StoreNotFoundException;
-import br.com.invillia.api.store.entity.Store;
-import br.com.invillia.api.store.repository.StoreRepository;
-import br.com.invillia.api.store.service.StoreService;
+import br.com.invillia.api.model.store.StoreNotFoundException;
+import br.com.invillia.api.model.store.entity.Store;
+import br.com.invillia.api.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import br.com.invillia.api.model.store.StoreRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,14 +18,13 @@ public class StoreServiceImpl implements StoreService {
     StoreRepository repository;
 
     @Override
-    public Store createStore(Store store) {
+    public Store create(Store store) {
         store.setId(null);
         return repository.save(store);
     }
 
     @Override
-    public Store updateStore(Store store) {
-
+    public Store update(Store store) {
         return repository.findById(store.getId())
                 .map(value -> {
                     value.setName(store.getName());
@@ -32,8 +32,7 @@ public class StoreServiceImpl implements StoreService {
                     return repository.save(store);
                 })
                 .orElseGet(() -> {
-                    store.setId(null);
-                    return repository.save(store);
+                   return create(store);
                 });
     }
 
@@ -50,5 +49,10 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public Store findById(Long id) {
         return repository.findById(id).orElseThrow(() -> new StoreNotFoundException(id));
+    }
+
+    @Override
+    public List<Store> findByAddress(String address) {
+        return repository.findByAddress(address);
     }
 }
