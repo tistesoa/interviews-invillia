@@ -4,7 +4,19 @@ The tasks developed is a little bit different, maybe because the description is 
 In meantime, to create a Order and a Payment, I choose to not pass the states attribute by a request. The program will change the state when a payment or a refund is requested. 
 
 
+## How to run
+### Requirements
+* Java 8
+* Maven
+* H2 database
 
+### Run
+```bash
+clone https://github.com/tistesoa/interviews-invillia.git .
+cd interviews-invillia/
+mvn clean install
+java -jar interview-invillia-ws/target/interview-invillia-ws-1.0-SNAPSHOT.war
+```
 ## Server.
 In this challenge, I choose to use Spring Boot Starter to not get attached to container configuration. But, in larger system in production,
 I'll look up to configure and deploy to a AWS platform.   
