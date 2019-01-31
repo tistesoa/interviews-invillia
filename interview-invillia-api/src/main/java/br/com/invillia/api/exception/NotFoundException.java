@@ -1,4 +1,4 @@
-package br.com.invillia.api.model;
+package br.com.invillia.api.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;

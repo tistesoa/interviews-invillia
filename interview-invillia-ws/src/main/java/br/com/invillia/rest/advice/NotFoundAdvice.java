@@ -1,14 +1,5 @@
 package br.com.invillia.rest.advice;
 
-import br.com.invillia.api.model.NotFoundException;
-import br.com.invillia.api.model.store.StoreNotFoundException;
-import org.springframework.data.jpa.repository.query.Procedure;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-
 /*
 @ControllerAdvice
 public class NotFoundAdvice {

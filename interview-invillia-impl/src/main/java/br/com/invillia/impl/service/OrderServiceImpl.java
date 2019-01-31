@@ -2,8 +2,8 @@ package br.com.invillia.impl.service;
 
 
 import br.com.invillia.api.model.order.OrderDTO;
-import br.com.invillia.api.model.order.OrderNotFoundException;
-import br.com.invillia.api.model.order.OrderUnableRefund;
+import br.com.invillia.api.model.order.exception.OrderNotFoundException;
+import br.com.invillia.api.model.order.exception.OrderUnableRefundException;
 import br.com.invillia.api.model.order.entity.Order;
 import br.com.invillia.api.model.order.OrderRepository;
 import br.com.invillia.api.model.order.entity.OrderStatus;
@@ -36,11 +36,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void refund(Long idOrder, Long idItem) {
+    public Order refund(Long idOrder, Long idItem) {
         Order order = repository.findById(idOrder).orElseThrow(() -> new OrderNotFoundException(idOrder));
         if (order.getStatus().equals(OrderStatus.AWAITING_PAYMENT)) {
             if (order.getConfirmationDate().minusDays(10).getDayOfMonth() > LocalDateTime.now().getDayOfMonth()) {
-                throw new OrderUnableRefund(order.getId());
+                throw new OrderUnableRefundException(order.getId());
             }
             if (Objects.nonNull(idItem)) {
                 order.setItems(order.getItems().stream().filter(item -> !item.getId().equals(idItem)).collect(Collectors.toList()));
@@ -48,8 +48,8 @@ public class OrderServiceImpl implements OrderService {
                 order.setStatus(OrderStatus.REFUNDED);
             }
         }else{
-            throw new OrderUnableRefund(order.getId());
+            throw new OrderUnableRefundException(order.getId());
         }
-        repository.save(order);
+        return repository.save(order);
     }
 }

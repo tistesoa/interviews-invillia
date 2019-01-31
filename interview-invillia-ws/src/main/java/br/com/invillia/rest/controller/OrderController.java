@@ -25,9 +25,9 @@ public class OrderController {
     }
 
 
-    @PostMapping("/refund/order/{idOrder}")
-    public void refundOrder(@NonNull @PathVariable Long idOrder, @RequestParam("idItem") Long idItem) { //valid order with items
-        order.refund(idOrder,idItem);
+    @PostMapping("/refund/{idOrder}")
+    public Order refundOrder(@NotNull @PathVariable Long idOrder, @RequestParam(name="idItem", required = false) Long idItem) { //valid order with items
+        return order.refund(idOrder,idItem);
     }
 
 

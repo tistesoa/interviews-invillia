@@ -6,5 +6,5 @@ import br.com.invillia.api.model.order.entity.Order;
 public interface OrderService {
     Order create(OrderDTO newOrder);
 
-    void refund(Long idOrder, Long idItem);
+    Order refund(Long idOrder, Long idItem);
 }

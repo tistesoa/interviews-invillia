@@ -19,4 +19,6 @@ public class SpringBootRestApplication extends SpringBootServletInitializer {
 		SpringApplication.run(SpringBootRestApplication.class, args);
 	}
 
+
+
 }

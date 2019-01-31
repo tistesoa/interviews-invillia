@@ -1,6 +1,5 @@
 package br.com.invillia.api.model.store;
 
-import br.com.invillia.api.model.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 

@@ -1,6 +1,6 @@
-package br.com.invillia.api.model.order;
+package br.com.invillia.api.model.order.exception;
 
-import br.com.invillia.api.model.NotFoundException;
+import br.com.invillia.api.exception.NotFoundException;
 
 public class OrderNotFoundException extends NotFoundException {
 
