@@ -34,6 +34,7 @@ spring.datasource.driver-class-name=org.h2.Driver<br>
 ```
 ### Security
 Not using any type of security, however I would configure token based authentication (JWT) or Spring Security Authentication provider (OAuth2) to provide restrict service for customers.
+* Enable https
 
 ### Swagger
 This project is using Swagger 2. When the app is running, access the link: 
