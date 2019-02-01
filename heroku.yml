@@ -1,0 +1,5 @@
+build:
+  docker:
+    web: Dockerfile
+run:
+  web: $ docker build -f Dockerfile -t spring-invillia . && docker run -p 8080:8080 --name springInviilia -t spring-invillia
