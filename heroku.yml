@@ -1,5 +1,5 @@
 build:
-  docker:
-    web: Dockerfile
+  languages:
+    - java
 run:
-  web: $ docker build -f Dockerfile -t spring-invillia . && docker run -p 8080:8080 --name springInviilia -t spring-invillia
+  web: $ java -jar interview-invillia-ws/target/interview-invillia-ws-1.0-SNAPSHOT.jar
