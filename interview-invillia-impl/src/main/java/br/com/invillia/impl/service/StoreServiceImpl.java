@@ -4,6 +4,7 @@ import br.com.invillia.api.model.store.StoreNotFoundException;
 import br.com.invillia.api.model.store.entity.Store;
 import br.com.invillia.api.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import br.com.invillia.api.model.store.StoreRepository;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,6 +37,7 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
+    @Cacheable("stores")
     public List<Store> listAll() {
         return repository.findAll();
     }

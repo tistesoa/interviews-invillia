@@ -6,7 +6,7 @@ In meantime, to create a Order and a Payment, I choose to not pass the states at
 
 ## How to run
 ### Requirements
-* Java 8
+* Java 8+
 * Maven
 * H2 database
 
@@ -44,7 +44,7 @@ This project is using Swagger 2. When the app is running, access the link:
 Unit test is very important to any application, however, provide more time to implement them.
 The frameworks JUnit and Mockito could be use to this task.
  
-### *Some things missing*:
+### *Somethings missing*:
 1 - Create a sequence generator for each table. <br>
 2 - Create a converter for LocalDateTime to String on rest response<br>
 3 - Create a converter for Currency  to String or number <br>
